@@ -3,7 +3,7 @@ import * as cookie from 'cookie';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
-	event.locals.userid = cookies['userid'] || self.crypto.randomUUID();
+	event.locals.userid = cookies['userid'] || globalThis.crypto.randomUUID();
 
 	const response = await resolve(event);
 
